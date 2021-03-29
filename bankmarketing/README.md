@@ -87,7 +87,7 @@ This screenhot shows the pipeline endpoint in the pipelines section. The AzureML
 The published pipeline overview shows the REST endpoint (REST URL), including the confirmation of an 'active' status.
 
 ![run-widget](./Screenshots/run-widget.png)\
-Jumping to the Jupyter Notebook, the run steps can be seen using the RunDetails widget. In this case, it doesn't show the full capabilities of the RunWidget as the notebook wasn't run in a seperate Juyper Notebook editor.
+Jumping to the Jupyter Notebook, the run steps can be seen using the RunDetails widget. In this case, it doesn't show the full capabilities of the RunWidget as the notebook wasn't run in a separate Juyper Notebook editor.
 
 ### Documentation
 The submission includes this README file that describes the main components of the project and a screencast that shows the entire process of the working ML application.
