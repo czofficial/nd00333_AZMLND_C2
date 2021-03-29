@@ -24,8 +24,6 @@ The project's main steps are the following:
 *TODO*: Provide an architectual diagram of the project and give an introduction of each step. An architectural diagram is an image that helps visualize the flow of operations from start to finish. In this case, it has to be related to the completed project, with its various stages that are critical to the overall flow. For example, one stage for managing models could be "using Automated ML to determine the best model". 
 
 ## Key Steps
-*TODO*: Write a short discription of the key steps. Remeber to include all the screenshots required to demonstrate key steps. 
-
 ### Authentication
 The Azure command-line interface (Azure CLI) is a set of commands used to create and manage Azure resources. In this step, a service principal is created, using the AzureML Command Module as an extension. A service principal is an identity created for use with applications, hosted services, and automated tools to access Azure resources. This access is restricted by the roles assigned to the service principal, giving you control over which resources can be accessed and at which level. For security reasons, it's always recommended to use service principals with automated tools rather than allowing them to log in with a user identity.
 
@@ -39,22 +37,57 @@ The command 'az ml workspace share' shares a workspace with another user with a 
 Once, the service principal (ea69...) is successfully created and shared with the workspace (udacity-ws), the owner (ml-auth) can be seen in the Azure Portal as well. Access control (IAM) is the page that you typically use to assign roles to grant access to Azure resources. It's also known as identity and access management (IAM).
 
 ### Automated ML experiment
-Text
+As security is enabled and authentication is completed, the next step is to upload the bankmarketing dataset, create an experiment using AutoML, configure a compute cluster and use that cluster to run the classification experiment.
+
+![dataset](./Screenshots/dataset.png)\
+This screenshot shows the registered dataset in ML Studio. Background information about the dataset can be found in the overview section.
+
+![experiment](./Screenshots/experiment.png)\
+The 'bankmarketing-experiment' is completed. The AutoML run took approximately 25 minutes to complete.
+
+![best-model](./Screenshots/best-model.png)\
+The best model that was derived by AutoML was a VotingEnsemble algorithm with an accuracy of almost 92%. Ensemble modeling is a process where multiple diverse models are created with the aim to aggregate the predictions of each base model, resulting in one final prediction for the unseen data that is usually more accurate than the each one returned by each single model. Basically, ensembling strategies reduce the generalization error of the prediction. Two types can be differentiated:
+- Voting: soft-voting which uses weighted averages (as used in this project).
+- Stacking: two layers are used, where the first layer has the same models as the voting ensemble, and the second layer model is used to find the optimal combination of the models from the first layer (performed worse in this project).
 
 ### Deploy the best model
-Text
+After completing the experiment, the best model (in this case the VotingEnsemble model) can be deployed. Deploying this model will allow us to interact with the HTTP API service and interact with the model by sending data over POST requests. The deployment of the model is done in AzureML Studio by enabeling key-based authentication using Azure Container Instances (ACI).
 
 ### Enable logging
-Text
+Now that the best model is deployed, Application Insights can be enabled to retrieve logs. Application Insights is used to monitor live applications. It will automatically detect performance anomalies, and includes powerful analytics tools to help diagnose any performance and usability issues.
+
+![logs-py](./Screenshots/logs.py.png)\
+One way of enabling Application Insights is using the Azure command-line interface (Azure CLI). In this case, code line 15 enables Application Insights by updating the loaded Webservice ('enable_app_insights=True').
+
+![ai-enabled](./Screenshots/ai_enabled.png)\
+After enabeling Application Insights via Azure CLI, it can be seen in the details tab of the bankmarketing-deployment endpoint as well, including the actual URL to Application Insigths.
 
 ### Swagger documentation
-Text
+In this step, the deployed model will be consumed by Swagger. Swagger is used to build an interactive API documentation by reading a JSON file containing a detailed description of the entire API. The JSON file for this project's best model is downloadable in the details tab of the bankmarketing-deployment endpoint (see also the screenshot above).
+
+![swagger](./Screenshots/swagger.png)\
+This screenshot shows that Swagger runs on localhost showing the HTTP API methods and respones for the best model.
 
 ### Consume model endpoints
-Text
+Once the model is deployed, the provided endpoint.py script can be used to interact with the trained model by including the specific bankmarketing-deployment endpoint URI and authentication key to the script.
+
+![endpoint-py](./Screenshots/endpoint.py.png)\
+Once this is done, the python script can be run against the API and the response of the best model endpoint can be seen as an output. In this case: 'yes' and 'no' for two separate data inputs.
 
 ### Create and publish a pipeline
-Text
+For creating, publishing and consuming a pipeline, a provided Jupyter Notebook on AzureML Studio is used. 
+
+![pipeline-run](./Screenshots/pipeline-run.png)\
+This screenshot shows that the pipeline was created and the status was set to 'completed'.
+
+![endpoint](./Screenshots/endpoint.png)\
+This screenhot shows the pipeline endpoint in the pipelines section.
+
+![published-pipeline-overview](./Screenshots/published-pipeline-overview.png)\
+The published pipeline overview shows the REST endpoint, including the confirmation of an 'active' status.
+
+![run-widget](./Screenshots/run-widget.png)\
+Jumping to the Jupyter Notebook, the run steps can be seen using the RunDetails widget.
 
 ### Documentation
 The submission includes this README file that describes the main components of the project and a screencast that shows the entire process of the working ML application.
