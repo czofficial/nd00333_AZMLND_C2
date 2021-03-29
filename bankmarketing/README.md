@@ -11,7 +11,7 @@ The main objective of this project ist to use Microsoft Azure to configure a clo
 The data for this project is related to direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed. The classification goal is to predict if the client will subscribe (yes/no) a term deposit (variable y). [Here is the link to the dataset](https://archive.ics.uci.edu/ml/datasets/bank+marketing).
 
 ## Architectural Diagram
-![project-overview](./Images/project-overview.png)\
+![project-overview](./Images/project-overview.png)
 
 The project's main steps are the following:
 1. Authentication
