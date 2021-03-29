@@ -6,9 +6,12 @@
 * [Screen Recording](#screen-recording)
 
 ## Overview
-The main objective of this project ist to use Microsoft Azure to configure a cloud-based machine learning production model, before deploying and consuming it. This also includes crating, publishing and consuming a pipeline.
+The main objective of this project ist to use Microsoft Azure to configure a cloud-based machine learning production model, before deploying and consuming it. This also includes creating, publishing and consuming a pipeline.
 
 The data for this project is related to direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed. The classification goal is to predict if the client will subscribe (yes/no) a term deposit (variable y). [Here is the link to the dataset](https://archive.ics.uci.edu/ml/datasets/bank+marketing).
+
+## Architectural Diagram
+![project-overview](./Images/project-overview.png)\
 
 The project's main steps are the following:
 1. Authentication
@@ -19,9 +22,6 @@ The project's main steps are the following:
 6. Consume model endpoints
 7. Create and publish a pipeline
 8. Documentation
-
-## Architectural Diagram
-*TODO*: Provide an architectual diagram of the project and give an introduction of each step. An architectural diagram is an image that helps visualize the flow of operations from start to finish. In this case, it has to be related to the completed project, with its various stages that are critical to the overall flow. For example, one stage for managing models could be "using Automated ML to determine the best model". 
 
 ## Key Steps
 ### Authentication
@@ -57,16 +57,16 @@ After completing the experiment, the best model (in this case the VotingEnsemble
 Now that the best model is deployed, Application Insights can be enabled to retrieve logs. Application Insights is used to monitor live applications. It will automatically detect performance anomalies, and includes powerful analytics tools to help diagnose any performance and usability issues.
 
 ![logs-py](./Screenshots/logs.py.png)\
-One way of enabling Application Insights is using the Azure command-line interface (Azure CLI). In this case, code line 15 enables Application Insights by updating the loaded Webservice ('enable_app_insights=True').
+One way of enabling Application Insights is using the Azure command-line interface (Azure CLI). In this case, code line 15 enables Application Insights by updating the loaded Webservice ('enable_app_insights=True'). This refers also to the uploaded logs.py script.
 
 ![ai-enabled](./Screenshots/ai_enabled.png)\
 After enabeling Application Insights via Azure CLI, it can be seen in the details tab of the bankmarketing-deployment endpoint as well, including the actual URL to Application Insigths.
 
 ### Swagger documentation
-In this step, the deployed model will be consumed by Swagger. Swagger is used to build an interactive API documentation by reading a JSON file containing a detailed description of the entire API. The JSON file for this project's best model is downloadable in the details tab of the bankmarketing-deployment endpoint (see also the screenshot above).
+In this step, the deployed model will be consumed by Swagger (to be more precise: Swagger UI docker container). Swagger is used to build an interactive API documentation by reading a JSON file containing a detailed description of the entire API. The JSON file for this project's best model is downloadable in the details tab of the bankmarketing-deployment endpoint (see also the screenshot above). This refers to the uploaded swagger.sh and serve.py script.
 
 ![swagger](./Screenshots/swagger.png)\
-This screenshot shows that Swagger runs on localhost showing the HTTP API methods and respones for the best model.
+This screenshot shows that Swagger runs on localhost showing the HTTP API methods and respones for the best model. It shows what GETs and POSTs can be performed on the endpoint.
 
 ### Consume model endpoints
 Once the model is deployed, the provided endpoint.py script can be used to interact with the trained model by including the specific bankmarketing-deployment endpoint URI and authentication key to the script.
@@ -75,16 +75,16 @@ Once the model is deployed, the provided endpoint.py script can be used to inter
 Once this is done, the python script can be run against the API and the response of the best model endpoint can be seen as an output. In this case: 'yes' and 'no' for two separate data inputs.
 
 ### Create and publish a pipeline
-For creating, publishing and consuming a pipeline, a provided Jupyter Notebook on AzureML Studio is used. 
+For creating, publishing and consuming a pipeline, a provided Jupyter Notebook on AzureML Studio is used. This refers to the uploaded aml-pipelines-with-automated-machine-learning-step.ipynb notebook.
 
 ![pipeline-run](./Screenshots/pipeline-run.png)\
 This screenshot shows that the pipeline was created and the status was set to 'completed'.
 
 ![endpoint](./Screenshots/endpoint.png)\
-This screenhot shows the pipeline endpoint in the pipelines section.
+This screenhot shows the pipeline endpoint in the pipelines section. The AzureML SDK for Python was used to publish the pipeline to a REST endpoint. This will allow one to run the pipeline using a simple REST API call.
 
 ![published-pipeline-overview](./Screenshots/published-pipeline-overview.png)\
-The published pipeline overview shows the REST endpoint, including the confirmation of an 'active' status.
+The published pipeline overview shows the REST endpoint (REST URL), including the confirmation of an 'active' status.
 
 ![run-widget](./Screenshots/run-widget.png)\
 Jumping to the Jupyter Notebook, the run steps can be seen using the RunDetails widget.
