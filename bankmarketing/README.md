@@ -63,7 +63,7 @@ One way of enabling Application Insights is using the Azure command-line interfa
 After enabeling Application Insights via Azure CLI, it can be seen in the details tab of the bankmarketing-deployment endpoint as well, including the actual URL to Application Insigths.
 
 ### Swagger documentation
-In this step, the deployed model will be consumed by Swagger (to be more precise: Swagger UI docker container). Swagger is used to build an interactive API documentation by reading a JSON file containing a detailed description of the entire API. The JSON file for this project's best model is downloadable in the details tab of the bankmarketing-deployment endpoint (see also the screenshot above). This refers to the uploaded swagger.sh and serve.py script.
+In this step, the deployed model will be consumed by Swagger (to be more precise: a Swagger UI docker container). Swagger is used to build an interactive API documentation by reading a JSON file containing a detailed description of the entire API. The JSON file for this project's best model is downloadable in the details tab of the bankmarketing-deployment endpoint (see also the screenshot above). This refers to the uploaded swagger.sh and serve.py script.
 
 ![swagger](./Screenshots/swagger.png)\
 This screenshot shows that Swagger runs on localhost showing the HTTP API methods and respones for the best model. It shows what GETs and POSTs can be performed on the endpoint.
@@ -87,7 +87,7 @@ This screenhot shows the pipeline endpoint in the pipelines section. The AzureML
 The published pipeline overview shows the REST endpoint (REST URL), including the confirmation of an 'active' status.
 
 ![run-widget](./Screenshots/run-widget.png)\
-Jumping to the Jupyter Notebook, the run steps can be seen using the RunDetails widget.
+Jumping to the Jupyter Notebook, the run steps can be seen using the RunDetails widget. In this case, it doesn't show the full capabilities of the RunWidget as the notebook wasn't run in a seperate Juyper Notebook editor.
 
 ### Documentation
 The submission includes this README file that describes the main components of the project and a screencast that shows the entire process of the working ML application.
