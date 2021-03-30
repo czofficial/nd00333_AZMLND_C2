@@ -13,6 +13,8 @@ The data for this project is related to direct marketing campaigns of a Portugue
 
 As a general overview, a lot of algorithms were trained in order to solve a classification problem using the AutoML functionality of AzureML. Based on all trained models, the best model was then deployed to a REST endpoint that can be consumed by other applications. In step '6. Consume model endpoints' (see below), one can see what response the REST endpoint returned when it was consumed by an application (in this case, the 'endpoint.py' script on a local device). As a second step, a pipeline on AzureML was created using Azure SDK for Python in order to automate the general model training process. By deploying the model training process pipeline itself to a REST endpoint, the REST pipeline can then be kicked-off with a simple REST API call using the HTTP POST method.
 
+This project focuses on the operationalising of the machine learning model, rather than improving it.
+
 ## Architectural Diagram
 ![project-overview](./Images/project-overview.png)
 
@@ -106,6 +108,7 @@ This screen recording shows the entire process of the working ML application, in
 
 ## Future Improvements
 - Model improvements
+
 Data guardrails are run by AutoML when automatic featurization is enabled. This is a sequence of checks over the input data to ensure high quality data is being used to train models. In this case, imbalanced classes were detected in the dataset by AutoML, which could lead to a falsely perceived positive effect of a model's accuracy because the input data has bias towards one class.
 
 One way of dealing with this imbalance could be using a performance metric that deals better with imbalanced data. For example, the AUC_weighted is a primary metric that calculates the contribution of every class based on the relative number of samples representing that class, hence is more robust against imbalance. Another one would be the F1 score. However, the correct way would be to resample the input data to even the class imbalance, either by up-sampling the smaller classes or down-sampling the larger classes.
